@@ -1,5 +1,9 @@
 # YouTube Keyword Hider
 
+<p align="center">
+	<img src="images/Keyword%20Video%20Filter%20Icon.png" alt="YouTube Keyword Hider icon" width="128">
+</p>
+
 A lightweight Chrome extension that hides YouTube videos when their titles contain keywords you choose. Manage the list from the extension popup; changes are saved with Chrome Sync storage.
 
 ## Features
