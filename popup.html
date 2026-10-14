@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YouTube Keyword Hider</title>
+    <link rel="stylesheet" href="popup.css" />
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <main class="panel">
+      <header class="header">
+        <div class="brand-mark" aria-hidden="true">Y</div>
+        <div>
+          <p class="eyebrow">YOUR FEED, YOUR RULES</p>
+          <h1>Keyword filter</h1>
+        </div>
+      </header>
+
+      <form id="keyword-form" class="keyword-form">
+        <label for="keyword-input">Hide videos containing</label>
+        <div class="input-row">
+          <input
+            id="keyword-input"
+            name="keyword"
+            type="text"
+            maxlength="80"
+            placeholder="e.g. spoilers"
+            autocomplete="off"
+            required
+          />
+          <button class="add-button" type="submit" aria-label="Add keyword">
+            +
+          </button>
+        </div>
+      </form>
+
+      <section class="list-section" aria-labelledby="list-title">
+        <div class="list-heading">
+          <h2 id="list-title">Blocked keywords</h2>
+          <span id="keyword-count" class="count">0</span>
+        </div>
+        <ul id="keyword-list" class="keyword-list"></ul>
+        <p id="empty-state" class="empty-state">
+          Nothing blocked yet. Add a keyword above.
+        </p>
+      </section>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+  </body>
+</html>
