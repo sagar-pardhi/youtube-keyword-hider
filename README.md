@@ -8,9 +8,12 @@ A lightweight Chrome extension that hides YouTube videos when their titles conta
 
 ## Features
 
-- Case-insensitive, partial matching against video titles.
+- Case-insensitive, partial matching against video titles and channel names.
+- Exclude selected channels by exact channel name or channel ID; exclusions override keyword matches.
 - Hides matching videos on YouTube home, search results, and recommendations.
 - Filters newly loaded feed items and updates the page when the keyword list changes.
+- Pause and resume filtering without removing keywords.
+- Import and export keyword lists as JSON files.
 - Skips Shorts-specific video cards.
 - Stores keywords in `chrome.storage.sync`; no extension-operated server is used.
 
@@ -25,7 +28,11 @@ To test changes to the extension code, select **Reload** on its card at `chrome:
 
 ## Usage
 
-Enter a keyword in the popup and submit it. Any supported video card whose title contains that text, regardless of letter case, will be hidden. For example, `spoiler` also matches `SPOILERS` and `movie spoilers`. Select **Remove** beside a keyword to stop filtering it.
+Enter a keyword in the popup and submit it. Any supported video card whose title or channel name contains that text, regardless of letter case, will be hidden. For example, `spoiler` also matches `SPOILERS` and `movie spoilers`. Select **Remove** beside a keyword to stop filtering it. Use the **Filtering** switch to pause and resume matching while keeping the list intact.
+
+To keep a channel visible even when its videos match a blocked keyword, add its exact display name or channel ID under **Always show this channel**. Channel names are matched exactly without regard to case; channel IDs are matched exactly. The channel ID can be found in a channel URL such as `youtube.com/channel/UC...`.
+
+Use **Export** to download keywords and excluded channels as JSON. **Import** accepts a legacy JSON array of keyword strings or a JSON object containing a `keywords` array and optional `excludedChannels` array. Object imports replace both lists; legacy array imports replace keywords and preserve the existing exclusions. Names are trimmed and deduplicated without regard to case; channel IDs remain case-sensitive.
 
 ## Permissions and data
 
@@ -36,15 +43,15 @@ The extension does not send keywords or video titles to an extension-operated se
 
 ## Project files
 
-| File                                  | Purpose                                |
-| ------------------------------------- | -------------------------------------- |
-| `manifest.json`                       | Chrome Manifest V3 configuration       |
-| `popup.html`, `popup.css`, `popup.js` | Keyword-management popup               |
-| `content.js`, `content.css`           | YouTube title matching and card hiding |
+| File                                  | Purpose                                                                        |
+| ------------------------------------- | ------------------------------------------------------------------------------ |
+| `manifest.json`                       | Chrome Manifest V3 configuration                                               |
+| `popup.html`, `popup.css`, `popup.js` | Keyword and channel-exclusion management, pause toggle, and JSON import/export |
+| `content.js`, `content.css`           | YouTube title/channel matching, channel exclusions, and card hiding            |
 
 ## Limitations
 
-YouTube can change its page structure, which may require updates to the content script's selectors. Filtering is limited to the supported video feeds and title text; it does not match channel names or filter Shorts-specific cards.
+YouTube can change its page structure, which may require updates to the content script's selectors. Filtering is limited to the supported video feeds and title/channel text; it does not filter Shorts-specific cards.
 
 ## Contributing
 

@@ -17,6 +17,17 @@
         </div>
       </header>
 
+      <div class="filter-toggle-row">
+        <div>
+          <span class="toggle-title">Filtering</span>
+          <span id="filter-state" class="toggle-state">On</span>
+        </div>
+        <label class="switch" aria-label="Enable keyword filtering">
+          <input id="filter-enabled" type="checkbox" checked />
+          <span class="switch-track"></span>
+        </label>
+      </div>
+
       <form id="keyword-form" class="keyword-form">
         <label for="keyword-input">Hide videos containing</label>
         <div class="input-row">
@@ -35,6 +46,21 @@
         </div>
       </form>
 
+      <div class="data-controls" aria-label="Keyword list file actions">
+        <button id="import-button" class="secondary-button" type="button">
+          Import
+        </button>
+        <button id="export-button" class="secondary-button" type="button">
+          Export
+        </button>
+        <input
+          id="import-file"
+          type="file"
+          accept=".json,application/json"
+          hidden
+        />
+      </div>
+
       <section class="list-section" aria-labelledby="list-title">
         <div class="list-heading">
           <h2 id="list-title">Blocked keywords</h2>
@@ -43,6 +69,35 @@
         <ul id="keyword-list" class="keyword-list"></ul>
         <p id="empty-state" class="empty-state">
           Nothing blocked yet. Add a keyword above.
+        </p>
+      </section>
+
+      <form id="channel-form" class="keyword-form channel-form">
+        <label for="channel-input">Always show this channel</label>
+        <div class="input-row">
+          <input
+            id="channel-input"
+            name="channel"
+            type="text"
+            maxlength="100"
+            placeholder="Channel name or UC... ID"
+            autocomplete="off"
+            required
+          />
+          <button class="add-button" type="submit" aria-label="Exclude channel">
+            +
+          </button>
+        </div>
+      </form>
+
+      <section class="list-section" aria-labelledby="channel-list-title">
+        <div class="list-heading">
+          <h2 id="channel-list-title">Excluded channels</h2>
+          <span id="channel-count" class="count">0</span>
+        </div>
+        <ul id="channel-list" class="keyword-list"></ul>
+        <p id="channel-empty-state" class="empty-state">
+          No channels excluded. Add a channel name or channel ID above.
         </p>
       </section>
       <p id="status" class="status" role="status" aria-live="polite"></p>
